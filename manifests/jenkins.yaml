@@ -60,9 +60,9 @@ data:
     #!/bin/bash -v
 
     kubectl config set-credentials jenkins --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-    kubectl config set-cluster minikube --server="https://192.168.99.100:8443" --certificate-authority="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-    kubectl config set-context jenkins-minikube --cluster=minikube --user=jenkins --namespace=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
-    kubectl config use-context jenkins-minikube
+    kubectl config set-cluster management --certificate-authority="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+    kubectl config set-context jenkins-mgmt --cluster=management --user=jenkins --namespace=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
+    kubectl config use-context jenkins-mgmt
     chmod 755 ~/.kube/config
 
 ---
@@ -113,6 +113,8 @@ spec:
         - name: kubectl-jenkins-context
           mountPath: "/kubectl-config-context.sh"
           subPath: "kubectl-config-context.sh"
+      securityContext:  # Set to dsock group created in jenkins/Dockerfile
+        fsGroup: 412
       containers:
       - image: 127.0.0.1:30400/jenkins:latest
         name: jenkins
