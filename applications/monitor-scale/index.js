@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var request = require('request');
 var async = require('async');
 var io = require('socket.io')(http, {
-  path = 'monitor-scale/socket.io' });
+  path: 'monitor-scale/socket.io' });
 var path = require("path");
 var Etcd = require('node-etcd');
 var cors = require('cors');
