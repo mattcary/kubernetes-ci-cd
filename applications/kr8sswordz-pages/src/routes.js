@@ -7,7 +7,7 @@ import HomePage from './components/home/HomePage';
  * Defines project routes.
  */
 export default (
-  <Route path="/kr8swordz" component={App} >
+  <Route path="/" component={App} >
     <IndexRoute component={HomePage} />
   </Route>
 );
