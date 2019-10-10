@@ -1,10 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
- name: monitor-scale
+ name: kr8s-app
  annotations:
   kubernetes.io/ingress.class: "gce"
 spec:
+  backend:
+    serviceName: kr8sswordz
+    servicePort: 80
   rules:
   - http:
       paths:
@@ -18,9 +21,3 @@ spec:
         backend:
           serviceName: puzzle
           servicePort: 3000
-  - http:
-      paths:
-      - path: /kr8sswordrz
-        backend:
-          serviceName: kr8sswordz
-          servicePort: 80
