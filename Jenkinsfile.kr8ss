@@ -17,7 +17,7 @@ node {
     
         sh "docker build -t ${env.PUZZLE_IMG} -f applications/puzzle/Dockerfile applications/puzzle"
         sh "docker build -t ${env.KR8SS_IMG} -f applications/kr8sswordz-pages/Dockerfile applications/kr8sswordz-pages"
-        sh "docker build -t ${env.MONITOR_IMG} -f applications/monitor-scale/Dockerfile applications/monitor-scale
+        sh "docker build -t ${env.MONITOR_IMG} -f applications/monitor-scale/Dockerfile applications/monitor-scale"
 
     stage "Push"
 
