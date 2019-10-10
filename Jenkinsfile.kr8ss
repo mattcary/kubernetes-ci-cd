@@ -27,6 +27,8 @@ node {
 
     stage "Deploy"
 
-        kubernetesDeploy configs: "applications/{kr8sswordz-pages,monitor-scale,puzzle}/k8s/deployment.yaml", kubeconfigId: 'kenzan_kubeconfig'
+        kubernetesDeploy configs: "applications/kr8sswordz-pages/k8s/deployment.yaml", kubeconfigId: 'kenzan_kubeconfig'
+        kubernetesDeploy configs: "applications/puzzle/k8s/deployment.yaml", kubeconfigId: 'kenzan_kubeconfig'
+        kubernetesDeploy configs: "applications/monitor-scale/k8s/deployment.yaml", kubeconfigId: 'kenzan_kubeconfig'
 
 }
