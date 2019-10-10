@@ -1,0 +1,32 @@
+node {
+
+    checkout scm
+
+    env.DOCKER_API_VERSION="1.23"
+    
+    sh "git rev-parse --short HEAD > commit-id"
+
+    tag = readFile('commit-id').replace("\n", "").replace("\r", "")
+    appName = "hello-kenzan"
+    registryHost = "127.0.0.1:30400/"
+    env.PUZZLE_IMG = "${registryHost}puzzle:${tag}"
+    env.KR8SS_IMG = "${registryHost}kr8sswordz:${tag}"
+    env.MONITOR_IMG = "${registryHost}monitor-scale:${tag}"
+
+    stage "Build"
+    
+        sh "docker build -t ${env.PUZZLE_IMG} -f applications/puzzle/Dockerfile applications/puzzle"
+        sh "docker build -t ${env.KR8SS_IMG} -f applications/kr8sswordz-pages/Dockerfile applications/kr8sswordz-pages"
+        sh "docker build -t ${env.MONITOR_IMG} -f applications/monitor-scale/Dockerfile applications/monitor-scale
+
+    stage "Push"
+
+        sh "docker push ${env.PUZZLE_IMG}"
+        sh "docker push ${env.KR8SS_IMG}"
+        sh "docker push ${env.MONITOR_IMG}"
+
+    stage "Deploy"
+
+        kubernetesDeploy configs: "applications/{kr8sswordz-pages,monitor-scale,puzzle}/k8s/deployment.yaml", kubeconfigId: 'kenzan_kubeconfig'
+
+}
