@@ -30,7 +30,7 @@ spec:
         tier: kr8sswordz
     spec:
       containers:
-      - image: $KR8S_IMG
+      - image: $KR8SS_IMG
         name: kr8sswordz
         imagePullPolicy: Always
         ports:
