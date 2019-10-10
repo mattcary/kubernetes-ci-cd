@@ -81,20 +81,3 @@ spec:
     app: mongo
     tier: mongo
   type: NodePort
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
- name: puzzle
-spec:
-  backend:
-    serviceName: puzzle
-    servicePort: 3000
-  rules:
-  - # host: puzzle.192.168.99.100.xip.io
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: puzzle
-          servicePort: 3000

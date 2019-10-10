@@ -27,6 +27,11 @@ watcher.on("change", function(val) {
   io.emit('pods', podChange);
 });
 
+app.use(function(req, res, next) {
+  req.url.replace(/^monitor-scale\//, '');
+  next();
+});
+
 app.post('/scale', function (req, res) {
   var scale = req.body.count;
   console.log('Count requested is: %s', scale);

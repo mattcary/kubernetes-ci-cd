@@ -36,20 +36,3 @@ spec:
         ports:
         - containerPort: 3002
           name: kr8sswordz
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
- name: kr8sswordz
-spec:
-  backend:
-    serviceName: kr8sswordz
-    servicePort: 80
-  rules:
-  - # host: kr8sswordz.192.168.99.100.xip.io
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: kr8sswordz
-          servicePort: 80

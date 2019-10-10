@@ -84,7 +84,7 @@ module.exports = function(Crossword) {
 
   function fireHit() {
     var podId = process.env.HOSTNAME;
-    var url = "http://monitor-scale:3001/hit/" + podId;
+    var url = "http://monitor-scale:3001/monitor-scale/hit/" + podId;
     request(url);
   }
 

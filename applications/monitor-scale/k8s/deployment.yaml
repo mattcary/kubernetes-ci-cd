@@ -45,23 +45,3 @@ spec:
         - containerPort: 2345
           name: kubectl-api          
 
----
-
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
- name: monitor-scale
- annotations:
-  ingress.kubernetes.io/rewrite-target: /
-spec:
-  backend:
-    serviceName: monitor-scale
-    servicePort: 3001
-  rules:
-  - # host: monitor-scale.192.168.99.100.xip.io
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: monitor-scale
-          servicePort: 3001
