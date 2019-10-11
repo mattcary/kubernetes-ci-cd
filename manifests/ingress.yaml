@@ -17,6 +17,12 @@ spec:
           servicePort: 3001
   - http:
       paths:
+      - path: /socket.io/*
+        backend:
+          serviceName: monitor-scale
+          servicePort: 3001
+  - http:
+      paths:
       - path: /puzzle/*
         backend:
           serviceName: puzzle
