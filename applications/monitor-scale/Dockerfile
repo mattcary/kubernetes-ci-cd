@@ -16,4 +16,5 @@ COPY . /usr/src/app
 EXPOSE 3001
 EXPOSE 8080
 
+ENV DEBUG=*
 CMD ["node", "index.js"]

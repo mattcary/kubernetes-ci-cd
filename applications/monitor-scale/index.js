@@ -23,16 +23,13 @@ var watcher = etcd.watcher("pod-list", null, {recursive: true});
 watcher.on("change", function(val) {
 
   var podChange = { pods: val.node.key, action: val.action };
-  console.log(JSON.stringify(podChange));
+  console.log('Emitting ' + JSON.stringify(podChange));
   io.emit('pods', podChange);
-  console.log('emitted pods')
 });
 
 app.use(function(req, res, next) {
-  console.log('Old req: ' + req.url)
   req.url = req.url.replace(/^monitor-scale\//, '');
   req.url = req.url.replace(/^\/monitor-scale/, '');
-  console.log('Rewritten req: ' + req.url)
   next();
 });
 
@@ -129,7 +126,6 @@ app.get('/hit/:podId', function (req, res) {
 
   console.log("Emitting hit from %s", req.params.podId);
   io.emit('hit', { podId: req.params.podId, time: n });
-  console.log('emitted hit')
   res.send('hit done')
 });
 
