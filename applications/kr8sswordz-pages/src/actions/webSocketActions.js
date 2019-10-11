@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import constants from '../constants';
 import * as types from './actionTypes';
 
-const baseUrl = `https://kr8s-monitor-scale.127.0.0.1.xip.io`;
+const baseUrl = `/monitor-scale`;
 const socket = io(baseUrl);
 
 export function getPods () {
