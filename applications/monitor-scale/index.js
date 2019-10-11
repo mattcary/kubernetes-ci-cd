@@ -29,6 +29,7 @@ watcher.on("change", function(val) {
 
 app.use(function(req, res, next) {
   req.url.replace(/^monitor-scale\//, '');
+  req.url.replace(/^\/monitor-scale/, '');
   next();
 });
 
