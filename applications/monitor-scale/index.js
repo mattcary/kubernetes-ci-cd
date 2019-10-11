@@ -28,8 +28,10 @@ watcher.on("change", function(val) {
 });
 
 app.use(function(req, res, next) {
+  console.log('Old req: ' + req.url)
   req.url.replace(/^monitor-scale\//, '');
   req.url.replace(/^\/monitor-scale/, '');
+  console.log('Rewritten req: ' + req.url)
   next();
 });
 
