@@ -35,12 +35,18 @@ spec:
       - image: $MONITOR_IMG
         name: monitor-scale
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "30m"
         ports:
         - containerPort: 3001
           name: monitor-scale
       - image: zappi/kubectl:latest
         name: kubectl-api
         args: ["proxy","-p","2345"]
+        resources:
+          requests:
+            cpu: "10m"
         ports:
         - containerPort: 2345
           name: kubectl-api          

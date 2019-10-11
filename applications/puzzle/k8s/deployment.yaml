@@ -17,6 +17,9 @@ spec:
       - image: $PUZZLE_IMG
         name: puzzle
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "20m"
         lifecycle:
           postStart:
             exec:
@@ -63,6 +66,9 @@ spec:
       - image: mongo:latest
         name: mongo
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "20m"
         ports:
         - containerPort: 27017
           name: mongo

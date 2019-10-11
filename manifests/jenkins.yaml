@@ -103,6 +103,9 @@ spec:
       initContainers:
       - image: lachlanevenson/k8s-kubectl:v1.11.2
         name: kubectl-config
+        resources:
+          requests:
+            cpu: "10m"
         command:
         - "/bin/sh"
         args:
@@ -118,6 +121,9 @@ spec:
       containers:
       - image: 127.0.0.1:30400/jenkins:latest
         name: jenkins
+        resources:
+          requests:
+            cpu: "10m"
         securityContext:
           privileged: true
         volumeMounts:

@@ -78,6 +78,9 @@ spec:
       containers:
       - image: registry:2
         name: registry
+        resources:
+          requests:
+            cpu: "10m"
         volumeMounts:
         - name: docker
           mountPath: /var/run/docker.sock
@@ -88,6 +91,9 @@ spec:
           name: registry
       - name: registryui
         image: hyper/docker-registry-web:latest
+        resources:
+          requests:
+            cpu: "10m"
         ports:
         - containerPort: 8080
         env:
