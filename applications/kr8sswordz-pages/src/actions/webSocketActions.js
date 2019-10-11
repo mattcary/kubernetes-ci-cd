@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import constants from '../constants';
 import * as types from './actionTypes';
 
-const baseUrl = `/`;
+const baseUrl = ``;
 const socket = io(baseUrl);
 
 export function getPods () {
