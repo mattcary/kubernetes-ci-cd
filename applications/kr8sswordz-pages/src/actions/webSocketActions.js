@@ -2,8 +2,8 @@ import io from 'socket.io-client';
 import constants from '../constants';
 import * as types from './actionTypes';
 
-const baseUrl = ``;
-const socket = io(baseUrl);
+const baseUrl = `/monitor-scale`;
+const socket = io('/');
 
 export function getPods () {
   return dispatch => {
